@@ -1,122 +1,105 @@
 # 🖥️ Panel TI Maestro
 
-Suite de herramientas de soporte técnico y mantenimiento profesional para Windows, compuesta por dos componentes complementarios: un potente script de consola (.bat) y una interfaz gráfica moderna (.html) integrada con WebView2.
+Suite de mantenimiento y soporte técnico profesional para Windows, compuesta por dos herramientas complementarias: un script de consola avanzado y una aplicación de escritorio con interfaz gráfica moderna.
+
+## 📦 Componentes
+
+| Archivo | Descripción | Versión |
+|--------|-------------|---------|
+| `PanelTIMaestro_v3_0.bat` | Script de consola interactivo | v3.0 |
+| `PanelTIMaestro.exe` | Aplicación de escritorio .NET con GUI | v1.0.0 |
 
 ---
 
-## 📦 Componentes del Proyecto
+## 🖱️ `PanelTIMaestro.exe` — Aplicación de Escritorio
 
-### 1. `PanelTIMaestro_v3_0.bat` — Script de Mantenimiento de Consola
+Aplicación nativa de Windows desarrollada en **.NET Desktop** (x64) con interfaz gráfica moderna. Proporciona un dashboard visual en tiempo real del estado del sistema, con diseño oscuro estilo Opera GX.
 
-Script de consola profesional para Windows que centraliza las tareas de mantenimiento, optimización y soporte técnico más comunes, todo desde un menú interactivo en la terminal.
+### ✨ Características
 
-#### ✨ Características
+- **Dashboard en tiempo real** con métricas de CPU, RAM, temperatura y salud del disco con barras de progreso dinámicas con cambio de color según el nivel de uso (verde / naranja / rojo).
+- **Interfaz glassmorphism** con paleta oscura morada, animaciones y efectos de brillo.
+- **Consola de actividad** embebida con timestamps para registrar eventos, comandos y errores.
+- **Integración con WebView2** para renderizar la interfaz HTML dentro de la aplicación nativa.
+- **Comunicación bidireccional** entre el frontend HTML y el backend .NET via `window.chrome.webview`.
+- **Alta resolución (DPI aware)** y soporte para rutas largas de Windows.
 
-- **Panel de información del sistema** al iniciar: muestra hostname, IP, SO, versión, uptime, RAM, procesador, GPU, placa base, BIOS, número de serie, MAC, disco y espacio libre — todo con colores vía PowerShell.
-- **Registro automático de actividad** (log con fecha, hora, usuario y equipo) guardado en `%TEMP%`.
-- **Verificación de permisos de administrador** al arrancar; si no los tiene, muestra error y se detiene de forma limpia.
-- **Menú principal con 17 opciones:**
+### 🔧 Requisitos
 
-| Opción | Función |
-|--------|---------|
-| 1 | Reparación del sistema (SFC + DISM) |
-| 2 | Limpieza total (5 ciclos de archivos temporales) |
-| 3 | Optimización de RAM (RAMMap) |
-| 4 | Red y DNS (flush + reset) |
-| 5 | Plan de máximo rendimiento |
-| 6 | Debloat (eliminar apps innecesarias) |
-| 7 | Desactivar telemetría |
-| 8 | Gestión de hibernación |
-| 9 | Registros y errores del sistema |
-| 10 | Optimización de disco (TRIM / Defrag) |
-| 11 | Eliminar IA (remover Copilot) |
-| 12 | Energía (reportes detallados) |
-| 13 | Herramientas avanzadas TI |
-| 14 | Backup completo del sistema |
-| 15 | Seguridad (Firewall + Windows Defender) |
-| 16 | Reiniciar equipo (con cuenta regresiva de 15 s) |
-| 17 | Salir |
+- Windows 10 / 11 (x64)
+- [**.NET Desktop Runtime**](https://dotnet.microsoft.com/download/dotnet) (se solicitará instalación automáticamente si no está presente)
+- [**Microsoft WebView2 Runtime**](https://developer.microsoft.com/microsoft-edge/webview2/) (incluido en Windows 11, descargable para Windows 10)
 
-#### 🔧 Requisitos
+### 🚀 Instalación y Uso
+
+1. Descarga `PanelTIMaestro.exe`.
+2. Ejecuta el archivo. Si falta el .NET Desktop Runtime, Windows mostrará un diálogo para descargarlo.
+3. No requiere instalación adicional — es un ejecutable portable de archivo único.
+
+> ✅ No se necesitan permisos de administrador para iniciar la aplicación. Algunas métricas avanzadas pueden requerir ejecución elevada.
+
+---
+
+## ⌨️ `PanelTIMaestro_v3_0.bat` — Script de Consola
+
+Script de consola profesional para Windows que centraliza las tareas de mantenimiento y optimización más comunes desde un menú interactivo en la terminal, con información del sistema en tiempo real y registro automático de actividad.
+
+### ✨ Características
+
+- **Panel de información del sistema** al iniciar: hostname, IP, SO, versión, uptime, RAM, CPU, GPU, placa base, BIOS, número de serie, MAC, disco y espacio libre.
+- **Registro automático** de toda la actividad con fecha, hora, usuario y nombre del equipo, guardado en `%TEMP%`.
+- **Verificación de permisos** de administrador al arrancar.
+- **17 módulos de mantenimiento** accesibles desde el menú principal.
+
+### 📋 Menú Principal
+
+| Opción | Módulo | Descripción |
+|--------|--------|-------------|
+| 1 | Reparación del sistema | SFC (System File Checker) + DISM RestoreHealth |
+| 2 | Limpieza total | 5 ciclos de eliminación de archivos temporales |
+| 3 | Optimización RAM | Limpieza de memoria con RAMMap |
+| 4 | Red y DNS | Flush DNS + reset de adaptadores de red |
+| 5 | Plan máximo rendimiento | Activa el plan de energía de alto rendimiento |
+| 6 | Debloat | Elimina aplicaciones innecesarias de Windows |
+| 7 | Desactivar telemetría | Deshabilita el envío de datos a Microsoft |
+| 8 | Gestión de hibernación | Habilitar / deshabilitar hibernación |
+| 9 | Registros y errores | Visor de eventos y errores del sistema |
+| 10 | Optimización de disco | TRIM para SSD / Desfragmentación para HDD |
+| 11 | Eliminar IA (Copilot) | Remueve Microsoft Copilot del sistema |
+| 12 | Energía | Reportes detallados de batería y energía |
+| 13 | Herramientas avanzadas TI | Acceso a herramientas del sistema adicionales |
+| 14 | Backup completo | Puntos de restauración e imagen del sistema |
+| 15 | Seguridad | Estado de Firewall + escaneos de Windows Defender |
+| 16 | Reiniciar equipo | Reinicio con cuenta regresiva de 15 segundos |
+| 17 | Salir | Cierra el script y muestra la ruta del log |
+
+### 🔧 Requisitos
 
 - Windows 10 / 11
 - PowerShell 5.1 o superior (incluido en Windows)
 - **Ejecutar como Administrador** (obligatorio)
 
-#### 🚀 Uso
+### 🚀 Uso
 
 ```bat
 :: Click derecho sobre el archivo → "Ejecutar como administrador"
 PanelTIMaestro_v3_0.bat
 ```
 
-> ⚠️ El script no se cerrará ante errores individuales; cada sección reporta su resultado y regresa al menú principal.
+### 📁 Archivos generados
 
-#### 📁 Archivos generados
-
-- **Log de ejecución:** `%TEMP%\PanelTI_Log_AAAAMMDD.log`
-- **Carpeta de herramientas:** `C:\HerramientasTI\` (se crea automáticamente si no existe)
+| Archivo | Ubicación | Descripción |
+|--------|-----------|-------------|
+| Log de sesión | `%TEMP%\PanelTI_Log_AAAAMMDD.log` | Registro completo de la ejecución |
+| Carpeta de herramientas | `C:\HerramientasTI\` | Creada automáticamente al primer inicio |
 
 ---
 
-### 2. `index.html` — Interfaz Gráfica Web (WebView2)
+## ⚠️ Advertencias
 
-Interfaz de usuario moderna y visual diseñada para integrarse con una aplicación de escritorio .NET mediante **Microsoft WebView2**. Muestra métricas del sistema en tiempo real con un estilo inspirado en Opera GX.
-
-#### ✨ Características
-
-- **Dashboard en tiempo real** con métricas de CPU, RAM y temperatura con barras de progreso dinámicas con cambio de color (verde / naranja / rojo según el nivel de uso).
-- **Sidebar de navegación** con secciones independientes y transiciones animadas.
-- **Tema visual Opera GX:** paleta oscura con degradados morados y negros, efecto glassmorphism en las tarjetas, animaciones y efectos de brillo (glow).
-- **Consola de actividad** embebida que registra eventos, comandos y errores con timestamp.
-- **Comunicación bidireccional con C#** vía `window.chrome.webview`:
-  - Recibe métricas del sistema en formato JSON (`type: 'metrics'`).
-  - Envía comandos al backend C# (`enviarACSharp(comando)`).
-- **Verificación automática** de elementos críticos del DOM al cargar (`cpu-percent`, `ram-percent`, `temp-value`, `disk-health`).
-
-#### 🔧 Requisitos
-
-- Aplicación host en C# / .NET con **Microsoft WebView2** embebido
-- Navegador moderno (solo para previsualización estática; sin WebView2 no recibe datos)
-- Tailwind CSS (cargado vía CDN: `https://cdn.tailwindcss.com`)
-
-#### 📡 Integración con C# (WebView2)
-
-La página escucha mensajes entrantes desde la capa .NET con el siguiente formato JSON:
-
-```json
-// Actualizar métricas
-{
-  "type": "metrics",
-  "cpu": 45,
-  "ram": 72,
-  "temp": 61,
-  "diskHealth": "Bueno"
-}
-
-// Enviar log a la consola
-{
-  "type": "log",
-  "message": "Tarea completada",
-  "level": "success"
-}
-```
-
-Para enviar comandos al backend desde JavaScript:
-
-```js
-enviarACSharp("iniciar_limpieza");
-```
-
-#### 🎨 Diseño
-
-| Elemento | Detalle |
-|----------|---------|
-| Fondo | Degradado fijo `#050110 → #1e0b36 → #4c1d95` |
-| Tarjetas | Glassmorphism con `backdrop-filter: blur(12px)` |
-| Acentos | Morado `#a855f7` con glow animado |
-| Fuente | Segoe UI / system-ui |
-| Animaciones | `fadeInUp` en cambio de sección, shimmer en hover |
+- El script `.bat` realiza cambios a nivel de sistema operativo. Úsalo solo en equipos sobre los que tengas autorización.
+- Las operaciones de **Debloat**, **Telemetría** y **Eliminar Copilot** son difíciles de revertir. Se recomienda crear un punto de restauración antes (Opción 14).
+- Algunos módulos pueden tardar entre **20 y 40 minutos** en completarse (ej. SFC + DISM, escaneo completo de Defender).
 
 ---
 
@@ -124,29 +107,22 @@ enviarACSharp("iniciar_limpieza");
 
 ```
 📁 PanelTIMaestro/
-├── PanelTIMaestro_v3_0.bat   # Script de consola (v3.0)
-├── index.html                 # Interfaz gráfica WebView2 (v2.0)
+├── PanelTIMaestro.exe          # Aplicación de escritorio .NET (v1.0.0, x64)
+├── PanelTIMaestro_v3_0.bat     # Script de consola (v3.0)
 └── README.md
 ```
 
 ---
 
-## 📋 Roadmap / Ideas Futuras
+## 📋 Roadmap
 
-- [ ] Integrar el `.bat` con la interfaz HTML como acciones ejecutables desde el panel
-- [ ] Añadir soporte multi-idioma (EN / ES)
-- [ ] Exportar reportes de salud del sistema a PDF
-- [ ] Modo portable (sin instalación) con empaquetado `.exe`
-
----
-
-## ⚠️ Advertencias
-
-- El script `.bat` realiza cambios a nivel de sistema operativo. **Úsalo con responsabilidad** y solo en equipos sobre los que tienes autorización.
-- Algunas operaciones (Debloat, Telemetría, Copilot) son **irreversibles** o difíciles de revertir. Se recomienda crear un punto de restauración antes (opción 14 → Backup).
+- [ ] Integración directa entre la GUI y el script `.bat`
+- [ ] Historial de sesiones visible desde la aplicación
+- [ ] Exportación de reportes a PDF
+- [ ] Actualizaciones automáticas del ejecutable
 
 ---
 
 ## 📄 Licencia
 
-Este proyecto es de uso libre para soporte técnico profesional y personal. Si lo modificas o distribuyes, mantén la atribución original.
+Proyecto de uso libre para soporte técnico personal y profesional. Si lo modificas o distribuyes, agradece mantener la atribución original.
